@@ -1,0 +1,47 @@
+<mat-grid-list cols="4" rowHeight="110px" class="gridContainer">
+  <mat-grid-tile *ngFor="let tile of tiles"
+                 [colspan]="tile.cols"
+                 [rowspan]="tile.rows"
+                 >
+
+    <div *ngIf="tile.text=='pokemon'" class="pokemon">
+      <img class="round" [src]="pokemon.sprites.front_default" />
+    </div>
+
+    <div *ngIf="tile.text=='space'" class="space">
+
+    </div>
+
+    <div *ngIf="tile.text=='types'" class="types">
+      <div *ngFor="let type of pokemon.types" >
+        <div [ngClass]="GetIconClass(type)">
+          <img [src]="GetIcon(type)" />
+        </div>
+      </div>
+    </div>
+    <div *ngIf="tile.text=='basicInfo'" class="basicInfo">
+      <span class="pokemonName">{{pokemon.name}}</span>
+      <span class="pokemonName">weight: {{pokemon.weight}}</span>
+      <span class="pokemonName">height: {{pokemon.height}}</span>
+    </div>
+    <div *ngIf="tile.text=='tabs'">
+      <mat-tab-group>
+        <mat-tab label="Abilities">
+          <mat-list dense>
+            <mat-list-item *ngFor="let tile of pokemon.abilities">
+              {{tile.ability.name}}
+            </mat-list-item>
+          </mat-list>
+        </mat-tab>
+        <mat-tab label="Moves">
+          <mat-list dense>
+            <mat-list-item *ngFor="let tile of pokemon.moves.slice(1, 4);">
+            {{tile.move.name}}
+            </mat-list-item>
+          </mat-list>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+

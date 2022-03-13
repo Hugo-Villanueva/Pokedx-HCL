@@ -1,0 +1,13 @@
+<div class="card">
+  <img class="round" [src]="pokemon.sprites.front_default" />
+  <a routerLink="/Pokemon/{{pokemon.id}}">
+    <span class="pokemonName" >{{data.name}}</span>
+  </a>
+    <div class="spacer"></div>
+    <div *ngFor="let type of pokemon.types">
+      <div [ngClass]="GetIconClass(type)">
+        <img [src]="GetIcon(type)" />
+      </div>
+    </div>
+</div>
+
